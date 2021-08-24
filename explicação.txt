@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------
+-------------------- Explicação dos arquivos -----------------------------
+--------------------------------------------------------------------------
+analyze.c: preenchimento da tabela de símbolos. Encontra alguns erros.
+	Verifica se uma função/variável já foi declarada.
+	Verifica se a variável é do tipo Boolean.
+	Condição do IF/WHILE: verifica se a condição é do tipo Boolean.
+	ASSIGN: não permite o retorno de uma função do tipo void para uma variável.
+	Permite somente operações entre inteiros.
+cgen.c: percorre a árvore sintática e gera o código intermediário.
+cgen.h: struct do código intermediário.
+cminus.l: responsável pela análise léxica.
+cminus.y: responsável pela análise sintática. Gera a árvore sintática.
+globals.h: possui as variáveis globais utilizadas pelo compilador.
+machineCode.c: responsável pela geração do código de máquina.
+machineCode.h: struct do código de máquina.
+main.c: código principal, chama as outras funções para a geração do compilador cminus.
+objectCode.c: responsável pela geração do código-objeto.
+objectCode.h: struct do código objeto.
+script.sh: script para a geração do compilador cminus.
+symtab.c: possui as funções para inserção na tabela de símbolos.
+symtab.h: possui a estrutura do BucketList.
+util.c: responsável pela impressão da árvore sintática.
