@@ -1,0 +1,890 @@
+Compilacao de Cminus: promptTeste.cminus
+
+Construindo Tabela de Simbolos...
+
+Tabela de Simbolos:
+
+Variable Name  MemLoc  Scope     TypeID   Type   Line numbers
+-------------  ------  -----     ------   -----  -----------
+receive        0                 func     int     0 
+trilhaHdreg    64      trocaContexto var      int    26 26 108 110 111 111 
+tamanhoPrograma 72      main      var      int    130 130 156 157 
+auxPrint       56                var      int    17 17 149 150 
+trilhaUltimaInstrucao 6                 var      int     7  7 72 73 138 170 
+reghd          0                 func     void    0 
+trocaContexto  57                func     void   121 
+main           66                func     void   192 
+indiceUltimaExecucao 61      trocaContexto var      int    23 23 57 61 66 
+indiceSO       0                 var      int     1  1 41 88 
+ultimaInstrucaoProcesso 59      trocaContexto var      int    21 21 72 108 
+enderecoUltimaInstrucao 71      main      var      int    129 129 170 174 
+auxProcesso    62      trocaContexto var      int    24 24 49 50 
+vetorPronto    44                vector   int    15 49 65 66 153 164 187 
+trilhaReghd    63      trocaContexto var      int    25 25 81 83 84 84 97 99 100 100 
+PCProcesso     8                 var      int     9  9 119 120 188 191 
+trilhaTamanho  4                 var      int     5  5 136 156 
+salvaPC        0                 func     void    0 
+indiceProcesso 9                 var      int    10 10 30 33 33 34 65 72 75 91 106 119 120 187 191 
+ultimaInstrucaoUltimoProcesso 60      trocaContexto var      int    22 22 73 81 97 
+indiceExecucao 55                var      int    16 16 49 53 53 56 57 58 61 65 189 
+primeiraInstrucaoTrocaContexto 2                 var      int     3  3 88 134 
+interrupt      0                 func     void    0 
+programasTerminados 7                 var      int     8  8 35 35 39 186 
+indiceUltimoProcesso 10                var      int    11 11 66 73 78 94 
+i              67      main      var      int    125 125 143 144 153 158 158 162 163 164 183 183 
+i              58      trocaContexto var      int    20 20 80 82 83 85 85 96 98 99 101 101 107 109 110 112 112 
+j              68      main      var      int    126 126 172 174 178 179 179 
+k              69      main      var      int    127 127 173 178 180 180 182 
+quantidadePrograma 3                 var      int     4  4 39 56 140 141 144 163 
+vetorPC        33                vector   int    14 30 33 106 119 155 
+vetorTerminado 11                vector   int    12 34 75 78 94 154 
+indicePrograma 73      main      var      int    131 131 145 146 148 153 154 155 156 157 164 169 170 178 
+enderecoPrimeiraInstrucao 70      main      var      int    128 128 169 172 
+proximoPC      65      trocaContexto var      int    27 27 29 30 
+trilhaPrimeiraInstrucao 5                 var      int     6  6 137 169 
+send           0                 func     void    0 
+hdreg          0                 func     void    0 
+primeiraInstrucaoPrompt 1                 var      int     2  2 41 133 
+jumpProcesso   0                 func     void    0 
+vetorTamanho   22                vector   int    13 33 157 
+hdmd           0                 func     void    0 
+hdmi           0                 func     void    0 
+
+Checando Tipos...
+
+Checagem de Tipos Finalizada
+
+
+Geracao do Codigo Intermediario:
+
+ 0 -> ( call, main , _ , _ ) 
+ 1 -> ( lab, trocaContexto , _ , _ ) 
+ 2 -> ( par, proximoPC , _ , _ ) 
+ 3 -> ( call, salvaPC , 1 , _ ) 
+ 4 -> ( asg, proximoPC , *vetorPC , indiceProcesso )
+ 5 -> ( asg, *vetorPC , indiceProcesso , t10 ) 
+ 6 -> ( asg, *vetorTamanho , indiceProcesso , t11 ) 
+ 7 -> ( maior, t10 , t11 , t12 ) 
+ 8 -> ( if, t12 , L1 , _ ) 
+ 9 -> ( asg, 1 , *vetorTerminado , indiceProcesso )
+10 -> ( soma, programasTerminados , 1 , t13 ) 
+11 -> ( asg, t13 , _ , programasTerminados )
+12 -> ( lab, L1 , _ , _ ) 
+13 -> ( maiorigual, programasTerminados , quantidadePrograma , t14 ) 
+14 -> ( if, t14 , L2 , _ ) 
+15 -> ( par, indiceSO , _ , _ ) 
+16 -> ( par, primeiraInstrucaoPrompt , _ , _ ) 
+17 -> ( call, jumpProcesso , 2 , _ ) 
+18 -> ( lab, L2 , _ , _ ) 
+19 -> ( asg, *vetorPronto , indiceExecucao , t15 ) 
+20 -> ( asg, t15 , _ , auxProcesso )
+21 -> ( par, auxProcesso , _ , _ ) 
+22 -> ( call, output , 1 , _ ) 
+23 -> ( soma, indiceExecucao , 1 , t16 ) 
+24 -> ( asg, t16 , _ , indiceExecucao )
+25 -> ( igual, indiceExecucao , quantidadePrograma , t17 ) 
+26 -> ( if, t17 , L3 , _ ) 
+27 -> ( sub, indiceExecucao , 1 , t18 ) 
+28 -> ( asg, t18 , _ , indiceUltimaExecucao )
+29 -> ( asg, 0 , _ , indiceExecucao )
+30 -> ( goto, L4 , _ , _ ) 
+31 -> ( lab, L3 , _ , _ ) 
+32 -> ( sub, indiceExecucao , 1 , t19 ) 
+33 -> ( asg, t19 , _ , indiceUltimaExecucao )
+34 -> ( lab, L4 , _ , _ ) 
+35 -> ( asg, *vetorPronto , indiceExecucao , t20 ) 
+36 -> ( asg, t20 , _ , indiceProcesso )
+37 -> ( asg, *vetorPronto , indiceUltimaExecucao , t21 ) 
+38 -> ( asg, t21 , _ , indiceUltimoProcesso )
+39 -> ( par, indiceProcesso , _ , _ ) 
+40 -> ( par, trilhaUltimaInstrucao , _ , _ ) 
+41 -> ( par, ultimaInstrucaoProcesso , _ , _ ) 
+42 -> ( call, hdmd , 3 , _ ) 
+43 -> ( par, indiceUltimoProcesso , _ , _ ) 
+44 -> ( par, trilhaUltimaInstrucao , _ , _ ) 
+45 -> ( par, ultimaInstrucaoUltimoProcesso , _ , _ ) 
+46 -> ( call, hdmd , 3 , _ ) 
+47 -> ( asg, *vetorTerminado , indiceProcesso , t22 ) 
+48 -> ( igual, t22 , 1 , t23 ) 
+49 -> ( if, t23 , L5 , _ ) 
+50 -> ( asg, *vetorTerminado , indiceUltimoProcesso , t24 ) 
+51 -> ( igual, t24 , 0 , t25 ) 
+52 -> ( if, t25 , L6 , _ ) 
+53 -> ( asg, 1 , _ , i )
+54 -> ( soma, ultimaInstrucaoUltimoProcesso , 1 , t26 ) 
+55 -> ( asg, t26 , _ , trilhaReghd )
+56 -> ( lab, L7 , _ , _ ) 
+57 -> ( menor, i , 32 , t27 ) 
+58 -> ( if, t27 , L8 , _ ) 
+59 -> ( par, i , _ , _ ) 
+60 -> ( par, trilhaReghd , _ , _ ) 
+61 -> ( call, reghd , 2 , _ ) 
+62 -> ( soma, trilhaReghd , 1 , t28 ) 
+63 -> ( asg, t28 , _ , trilhaReghd )
+64 -> ( soma, i , 1 , t29 ) 
+65 -> ( asg, t29 , _ , i )
+66 -> ( goto, L7 , _ , _ ) 
+67 -> ( lab, L8 , _ , _ ) 
+68 -> ( lab, L6 , _ , _ ) 
+69 -> ( par, indiceSO , _ , _ ) 
+70 -> ( par, primeiraInstrucaoTrocaContexto , _ , _ ) 
+71 -> ( call, jumpProcesso , 2 , _ ) 
+72 -> ( lab, L5 , _ , _ ) 
+73 -> ( par, indiceProcesso , _ , _ ) 
+74 -> ( call, output , 1 , _ ) 
+75 -> ( asg, *vetorTerminado , indiceUltimoProcesso , t10 ) 
+76 -> ( igual, t10 , 0 , t11 ) 
+77 -> ( if, t11 , L9 , _ ) 
+78 -> ( asg, 1 , _ , i )
+79 -> ( soma, ultimaInstrucaoUltimoProcesso , 1 , t12 ) 
+80 -> ( asg, t12 , _ , trilhaReghd )
+81 -> ( lab, L10 , _ , _ ) 
+82 -> ( menor, i , 32 , t13 ) 
+83 -> ( if, t13 , L11 , _ ) 
+84 -> ( par, i , _ , _ ) 
+85 -> ( par, trilhaReghd , _ , _ ) 
+86 -> ( call, reghd , 2 , _ ) 
+87 -> ( soma, trilhaReghd , 1 , t14 ) 
+88 -> ( asg, t14 , _ , trilhaReghd )
+89 -> ( soma, i , 1 , t15 ) 
+90 -> ( asg, t15 , _ , i )
+91 -> ( goto, L10 , _ , _ ) 
+92 -> ( lab, L11 , _ , _ ) 
+93 -> ( lab, L9 , _ , _ ) 
+94 -> ( asg, *vetorPC , indiceProcesso , t16 ) 
+95 -> ( dif, t16 , 0 , t17 ) 
+96 -> ( if, t17 , L12 , _ ) 
+97 -> ( asg, 1 , _ , i )
+98 -> ( soma, ultimaInstrucaoProcesso , 1 , t18 ) 
+99 -> ( asg, t18 , _ , trilhaHdreg )
+100 -> ( lab, L13 , _ , _ ) 
+101 -> ( menor, i , 32 , t19 ) 
+102 -> ( if, t19 , L14 , _ ) 
+103 -> ( par, i , _ , _ ) 
+104 -> ( par, trilhaHdreg , _ , _ ) 
+105 -> ( call, hdreg , 2 , _ ) 
+106 -> ( soma, trilhaHdreg , 1 , t20 ) 
+107 -> ( asg, t20 , _ , trilhaHdreg )
+108 -> ( soma, i , 1 , t21 ) 
+109 -> ( asg, t21 , _ , i )
+110 -> ( goto, L13 , _ , _ ) 
+111 -> ( lab, L14 , _ , _ ) 
+112 -> ( lab, L12 , _ , _ ) 
+113 -> ( asg, *vetorPC , indiceProcesso , t22 ) 
+114 -> ( asg, t22 , _ , PCProcesso )
+115 -> ( par, indiceProcesso , _ , _ ) 
+116 -> ( par, PCProcesso , _ , _ ) 
+117 -> ( call, jumpProcesso , 2 , _ ) 
+118 -> ( lab, main , _ , _ ) 
+119 -> ( asg, 186 , _ , primeiraInstrucaoPrompt )
+120 -> ( asg, 33 , _ , primeiraInstrucaoTrocaContexto )
+121 -> ( asg, 0 , _ , trilhaTamanho )
+122 -> ( asg, 1 , _ , trilhaPrimeiraInstrucao )
+123 -> ( asg, 2 , _ , trilhaUltimaInstrucao )
+124 -> ( call, input , 0 , t23 ) 
+125 -> ( asg, t23 , _ , quantidadePrograma )
+126 -> ( par, quantidadePrograma , _ , _ ) 
+127 -> ( call, output , 1 , _ ) 
+128 -> ( asg, 0 , _ , i )
+129 -> ( lab, L15 , _ , _ ) 
+130 -> ( menor, i , quantidadePrograma , t24 ) 
+131 -> ( if, t24 , L16 , _ ) 
+132 -> ( call, input , 0 , t25 ) 
+133 -> ( asg, t25 , _ , indicePrograma )
+134 -> ( par, indicePrograma , _ , _ ) 
+135 -> ( call, output , 1 , _ ) 
+136 -> ( maior, indicePrograma , 10 , t26 ) 
+137 -> ( if, t26 , L17 , _ ) 
+138 -> ( asg, 0 , _ , auxPrint )
+139 -> ( par, auxPrint , _ , _ ) 
+140 -> ( call, output , 1 , _ ) 
+141 -> ( goto, L18 , _ , _ ) 
+142 -> ( lab, L17 , _ , _ ) 
+143 -> ( asg, indicePrograma , *vetorPronto , i )
+144 -> ( asg, 0 , *vetorTerminado , indicePrograma )
+145 -> ( asg, 0 , *vetorPC , indicePrograma )
+146 -> ( par, indicePrograma , _ , _ ) 
+147 -> ( par, trilhaTamanho , _ , _ ) 
+148 -> ( par, tamanhoPrograma , _ , _ ) 
+149 -> ( call, hdmd , 3 , _ ) 
+150 -> ( sub, tamanhoPrograma , 1 , t27 ) 
+151 -> ( asg, t27 , *vetorTamanho , indicePrograma )
+152 -> ( soma, i , 1 , t28 ) 
+153 -> ( asg, t28 , _ , i )
+154 -> ( lab, L18 , _ , _ ) 
+155 -> ( goto, L15 , _ , _ ) 
+156 -> ( lab, L16 , _ , _ ) 
+157 -> ( asg, 0 , _ , i )
+158 -> ( lab, L19 , _ , _ ) 
+159 -> ( menor, i , quantidadePrograma , t29 ) 
+160 -> ( if, t29 , L20 , _ ) 
+161 -> ( asg, *vetorPronto , i , t10 ) 
+162 -> ( asg, t10 , _ , indicePrograma )
+163 -> ( par, indicePrograma , _ , _ ) 
+164 -> ( par, trilhaPrimeiraInstrucao , _ , _ ) 
+165 -> ( par, enderecoPrimeiraInstrucao , _ , _ ) 
+166 -> ( call, hdmd , 3 , _ ) 
+167 -> ( par, indicePrograma , _ , _ ) 
+168 -> ( par, trilhaUltimaInstrucao , _ , _ ) 
+169 -> ( par, enderecoUltimaInstrucao , _ , _ ) 
+170 -> ( call, hdmd , 3 , _ ) 
+171 -> ( asg, enderecoPrimeiraInstrucao , _ , j )
+172 -> ( asg, 0 , _ , k )
+173 -> ( lab, L21 , _ , _ ) 
+174 -> ( menorigual, j , enderecoUltimaInstrucao , t11 ) 
+175 -> ( if, t11 , L22 , _ ) 
+176 -> ( par, indicePrograma , _ , _ ) 
+177 -> ( par, j , _ , _ ) 
+178 -> ( par, k , _ , _ ) 
+179 -> ( call, hdmi , 3 , _ ) 
+180 -> ( soma, j , 1 , t12 ) 
+181 -> ( asg, t12 , _ , j )
+182 -> ( soma, k , 1 , t13 ) 
+183 -> ( asg, t13 , _ , k )
+184 -> ( goto, L21 , _ , _ ) 
+185 -> ( lab, L22 , _ , _ ) 
+186 -> ( asg, 0 , _ , k )
+187 -> ( soma, i , 1 , t14 ) 
+188 -> ( asg, t14 , _ , i )
+189 -> ( goto, L19 , _ , _ ) 
+190 -> ( lab, L20 , _ , _ ) 
+191 -> ( asg, 0 , _ , programasTerminados )
+192 -> ( asg, *vetorPronto , 0 , t15 ) 
+193 -> ( asg, t15 , _ , indiceProcesso )
+194 -> ( asg, 0 , _ , PCProcesso )
+195 -> ( asg, 0 , _ , indiceExecucao )
+196 -> ( par, indiceProcesso , _ , _ ) 
+197 -> ( par, PCProcesso , _ , _ ) 
+198 -> ( call, jumpProcesso , 2 , _ ) 
+199 -> ( halt, _ , _ , _ ) 
+
+
+Geracao do Codigo Assembly:
+
+  0 ->  j  186 
+  1 ->  storePC  $S0  65    
+  2 ->  loadi  $S0  33 
+  3 ->  load  $S1  9 
+  4 ->  add  $S0  $S1  $S0 
+  5 ->  load  $S1  65 
+  6 ->  storer  $S1  $S0    
+  7 ->  loadi  $S0  33 
+  8 ->  load  $S1  9 
+  9 ->  add  $S0  $S1  $S0 
+ 10 ->  loadr  t10  $S0 
+ 11 ->  loadi  $S0  22 
+ 12 ->  load  $S1  9 
+ 13 ->  add  $S0  $S1  $S0 
+ 14 ->  loadr  t11  $S0 
+ 15 ->  sgt  t12  t10  t11 
+ 16 ->  beq  t12  $zero  26 
+ 17 ->  loadi  $S0  11 
+ 18 ->  load  $S1  9 
+ 19 ->  add  $S0  $S1  $S0 
+ 20 ->  loadi  $S1  1 
+ 21 ->  storer  $S1  $S0 
+ 22 ->  load  $S0  7 
+ 23 ->  loadi  $S1  1 
+ 24 ->  add  t13  $S0  $S1 
+ 25 ->  store  t13  7 
+ 26 ->  load  $S0  7 
+ 27 ->  load  $S1  3 
+ 28 ->  sget  t14  $S0  $S1 
+ 29 ->  beq  t14  $zero  33 
+ 30 ->  load  $S0  0    
+ 31 ->  load  $S1  1    
+ 32 ->  jProc  $S0  $S1    
+ 33 ->  loadi  $S0  44 
+ 34 ->  load  $S1  55 
+ 35 ->  add  $S0  $S1  $S0 
+ 36 ->  loadr  t15  $S0 
+ 37 ->  store  t15  62 
+ 38 ->  load  $S0  62 
+ 39 ->  out  $S0 
+ 40 ->  load  $S0  55 
+ 41 ->  loadi  $S1  1 
+ 42 ->  add  t16  $S0  $S1 
+ 43 ->  store  t16  55 
+ 44 ->  load  $S0  55 
+ 45 ->  load  $S1  3 
+ 46 ->  set  t17  $S0  $S1 
+ 47 ->  beq  t17  $zero  55 
+ 48 ->  load  $S0  55 
+ 49 ->  loadi  $S1  1 
+ 50 ->  sub  t18  $S0  $S1 
+ 51 ->  store  t18  61 
+ 52 ->  loadi  $S0  0 
+ 53 ->  store  $S0  55 
+ 54 ->  j  59 
+ 55 ->  load  $S0  55 
+ 56 ->  loadi  $S1  1 
+ 57 ->  sub  t19  $S0  $S1 
+ 58 ->  store  t19  61 
+ 59 ->  loadi  $S0  44 
+ 60 ->  load  $S1  55 
+ 61 ->  add  $S0  $S1  $S0 
+ 62 ->  loadr  t20  $S0 
+ 63 ->  store  t20  9 
+ 64 ->  loadi  $S0  44 
+ 65 ->  load  $S1  61 
+ 66 ->  add  $S0  $S1  $S0 
+ 67 ->  loadr  t21  $S0 
+ 68 ->  store  t21  10 
+ 69 ->  load  $S0  9    
+ 70 ->  load  $S1  6    
+ 71 ->  loadi  $S2  59    
+ 72 ->  hdmd  $S0  $S1  $S2 
+ 73 ->  load  $S0  10    
+ 74 ->  load  $S1  6    
+ 75 ->  loadi  $S2  60    
+ 76 ->  hdmd  $S0  $S1  $S2 
+ 77 ->  loadi  $S0  11 
+ 78 ->  load  $S1  9 
+ 79 ->  add  $S0  $S1  $S0 
+ 80 ->  loadr  t22  $S0 
+ 81 ->  loadi  $S0  1 
+ 82 ->  set  t23  t22  $S0 
+ 83 ->  beq  t23  $zero  116 
+ 84 ->  loadi  $S0  11 
+ 85 ->  load  $S1  10 
+ 86 ->  add  $S0  $S1  $S0 
+ 87 ->  loadr  t24  $S0 
+ 88 ->  loadi  $S0  0 
+ 89 ->  set  t25  t24  $S0 
+ 90 ->  beq  t25  $zero  113 
+ 91 ->  loadi  $S0  1 
+ 92 ->  store  $S0  58 
+ 93 ->  load  $S0  60 
+ 94 ->  loadi  $S1  1 
+ 95 ->  add  t26  $S0  $S1 
+ 96 ->  store  t26  63 
+ 97 ->  load  $S0  58 
+ 98 ->  loadi  $S1  32 
+ 99 ->  slt  t27  $S0  $S1 
+100 ->  beq  t27  $zero  113 
+101 ->  load  $SR4  58    
+102 ->  load  $SR5  63    
+103 ->  reghd  $SR4  $SR5    
+104 ->  load  $S0  63 
+105 ->  loadi  $S1  1 
+106 ->  add  t28  $S0  $S1 
+107 ->  store  t28  63 
+108 ->  load  $S0  58 
+109 ->  loadi  $S1  1 
+110 ->  add  t29  $S0  $S1 
+111 ->  store  t29  58 
+112 ->  j  97 
+113 ->  load  $S0  0    
+114 ->  load  $S1  2    
+115 ->  jProc  $S0  $S1    
+116 ->  load  $S0  9 
+117 ->  out  $S0 
+118 ->  loadi  $S0  11 
+119 ->  load  $S1  10 
+120 ->  add  $S0  $S1  $S0 
+121 ->  loadr  t10  $S0 
+122 ->  loadi  $S0  0 
+123 ->  set  t11  t10  $S0 
+124 ->  beq  t11  $zero  147 
+125 ->  loadi  $S0  1 
+126 ->  store  $S0  58 
+127 ->  load  $S0  60 
+128 ->  loadi  $S1  1 
+129 ->  add  t12  $S0  $S1 
+130 ->  store  t12  63 
+131 ->  load  $S0  58 
+132 ->  loadi  $S1  32 
+133 ->  slt  t13  $S0  $S1 
+134 ->  beq  t13  $zero  147 
+135 ->  load  $SR4  58    
+136 ->  load  $SR5  63    
+137 ->  reghd  $SR4  $SR5    
+138 ->  load  $S0  63 
+139 ->  loadi  $S1  1 
+140 ->  add  t14  $S0  $S1 
+141 ->  store  t14  63 
+142 ->  load  $S0  58 
+143 ->  loadi  $S1  1 
+144 ->  add  t15  $S0  $S1 
+145 ->  store  t15  58 
+146 ->  j  131 
+147 ->  loadi  $S0  33 
+148 ->  load  $S1  9 
+149 ->  add  $S0  $S1  $S0 
+150 ->  loadr  t16  $S0 
+151 ->  loadi  $S0  0 
+152 ->  sdt  t17  t16  $S0 
+153 ->  beq  t17  $zero  176 
+154 ->  loadi  $S0  1 
+155 ->  store  $S0  58 
+156 ->  load  $S0  59 
+157 ->  loadi  $S1  1 
+158 ->  add  t18  $S0  $S1 
+159 ->  store  t18  64 
+160 ->  load  $S0  58 
+161 ->  loadi  $S1  32 
+162 ->  slt  t19  $S0  $S1 
+163 ->  beq  t19  $zero  176 
+164 ->  load  $SR4  58    
+165 ->  load  $SR5  64    
+166 ->  hdreg  $SR4  $SR5    
+167 ->  load  $S0  64 
+168 ->  loadi  $S1  1 
+169 ->  add  t20  $S0  $S1 
+170 ->  store  t20  64 
+171 ->  load  $S0  58 
+172 ->  loadi  $S1  1 
+173 ->  add  t21  $S0  $S1 
+174 ->  store  t21  58 
+175 ->  j  160 
+176 ->  loadi  $S0  33 
+177 ->  load  $S1  9 
+178 ->  add  $S0  $S1  $S0 
+179 ->  loadr  t22  $S0 
+180 ->  store  t22  8 
+181 ->  load  $S0  9    
+182 ->  load  $S1  8    
+183 ->  jProc  $S0  $S1    
+184 ->  load  $S31  57 
+185 ->  jr  $S31 
+186 ->  loadi  $S0  186 
+187 ->  store  $S0  1 
+188 ->  loadi  $S0  33 
+189 ->  store  $S0  2 
+190 ->  loadi  $S0  0 
+191 ->  store  $S0  4 
+192 ->  loadi  $S0  1 
+193 ->  store  $S0  5 
+194 ->  loadi  $S0  2 
+195 ->  store  $S0  6 
+196 ->  in  t23 
+197 ->  store  t23  3 
+198 ->  load  $S0  3 
+199 ->  out  $S0 
+200 ->  loadi  $S0  0 
+201 ->  store  $S0  67 
+202 ->  load  $S0  67 
+203 ->  load  $S1  3 
+204 ->  slt  t24  $S0  $S1 
+205 ->  beq  t24  $zero  250 
+206 ->  in  t25 
+207 ->  store  t25  73 
+208 ->  load  $S0  73 
+209 ->  out  $S0 
+210 ->  load  $S0  73 
+211 ->  loadi  $S1  10 
+212 ->  sgt  t26  $S0  $S1 
+213 ->  beq  t26  $zero  219 
+214 ->  loadi  $S0  0 
+215 ->  store  $S0  56 
+216 ->  load  $S0  56 
+217 ->  out  $S0 
+218 ->  j  249 
+219 ->  loadi  $S0  44 
+220 ->  load  $S1  67 
+221 ->  add  $S0  $S1  $S0 
+222 ->  load  $S1  73 
+223 ->  storer  $S1  $S0    
+224 ->  loadi  $S0  11 
+225 ->  load  $S1  73 
+226 ->  add  $S0  $S1  $S0 
+227 ->  loadi  $S1  0 
+228 ->  storer  $S1  $S0 
+229 ->  loadi  $S0  33 
+230 ->  load  $S1  73 
+231 ->  add  $S0  $S1  $S0 
+232 ->  loadi  $S1  0 
+233 ->  storer  $S1  $S0 
+234 ->  load  $S0  73    
+235 ->  load  $S1  4    
+236 ->  loadi  $S2  72    
+237 ->  hdmd  $S0  $S1  $S2 
+238 ->  load  $S0  72 
+239 ->  loadi  $S1  1 
+240 ->  sub  t27  $S0  $S1 
+241 ->  loadi  $S0  22 
+242 ->  load  $S1  73 
+243 ->  add  $S0  $S1  $S0 
+244 ->  storer  t27  $S0 
+245 ->  load  $S0  67 
+246 ->  loadi  $S1  1 
+247 ->  add  t28  $S0  $S1 
+248 ->  store  t28  67 
+249 ->  j  202 
+250 ->  loadi  $S0  0 
+251 ->  store  $S0  67 
+252 ->  load  $S0  67 
+253 ->  load  $S1  3 
+254 ->  slt  t29  $S0  $S1 
+255 ->  beq  t29  $zero  297 
+256 ->  loadi  $S0  44 
+257 ->  load  $S1  67 
+258 ->  add  $S0  $S1  $S0 
+259 ->  loadr  t10  $S0 
+260 ->  store  t10  73 
+261 ->  load  $S0  73    
+262 ->  load  $S1  5    
+263 ->  loadi  $S2  70    
+264 ->  hdmd  $S0  $S1  $S2 
+265 ->  load  $S0  73    
+266 ->  load  $S1  6    
+267 ->  loadi  $S2  71    
+268 ->  hdmd  $S0  $S1  $S2 
+269 ->  load  $S0  70 
+270 ->  store  $S0  68 
+271 ->  loadi  $S0  0 
+272 ->  store  $S0  69 
+273 ->  load  $S0  68 
+274 ->  load  $S1  71 
+275 ->  slet  t11  $S0  $S1 
+276 ->  beq  t11  $zero  290 
+277 ->  load  $S0  73    
+278 ->  load  $S1  68    
+279 ->  load  $S2  69    
+280 ->  hdmi  $S0  $S1  $S2 
+281 ->  load  $S0  68 
+282 ->  loadi  $S1  1 
+283 ->  add  t12  $S0  $S1 
+284 ->  store  t12  68 
+285 ->  load  $S0  69 
+286 ->  loadi  $S1  1 
+287 ->  add  t13  $S0  $S1 
+288 ->  store  t13  69 
+289 ->  j  273 
+290 ->  loadi  $S0  0 
+291 ->  store  $S0  69 
+292 ->  load  $S0  67 
+293 ->  loadi  $S1  1 
+294 ->  add  t14  $S0  $S1 
+295 ->  store  t14  67 
+296 ->  j  252 
+297 ->  loadi  $S0  0 
+298 ->  store  $S0  7 
+299 ->  loadi  $S0  44 
+300 ->  addi  $S0  $S0  0 
+301 ->  loadr  t15  $S0 
+302 ->  store  t15  9 
+303 ->  loadi  $S0  0 
+304 ->  store  $S0  8 
+305 ->  loadi  $S0  0 
+306 ->  store  $S0  55 
+307 ->  load  $S0  9    
+308 ->  load  $S1  8    
+309 ->  jProc  $S0  $S1    
+310 ->  hlt 
+
+
+Geracao do Codigo de Maquina:
+
+hd[0] <= { 6'd26, 16'd186, 10'd0 };
+hd[1] <= { 6'd36, 5'd1, 16'd65, 5'd0 };
+hd[2] <= { 6'd18, 5'd1, 16'd33, 5'd0 };
+hd[3] <= { 6'd16, 5'd2, 16'd9, 5'd0 };
+hd[4] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[5] <= { 6'd16, 5'd2, 16'd65, 5'd0 };
+hd[6] <= { 6'd20, 5'd2, 5'd1, 16'd0 };
+hd[7] <= { 6'd18, 5'd1, 16'd33, 5'd0 };
+hd[8] <= { 6'd16, 5'd2, 16'd9, 5'd0 };
+hd[9] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[10] <= { 6'd19, 5'd10, 5'd1, 16'd0 };
+hd[11] <= { 6'd18, 5'd1, 16'd22, 5'd0 };
+hd[12] <= { 6'd16, 5'd2, 16'd9, 5'd0 };
+hd[13] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[14] <= { 6'd19, 5'd11, 5'd1, 16'd0 };
+hd[15] <= { 6'd8, 5'd12, 5'd10, 5'd11, 11'd0 };
+hd[16] <= { 6'd22, 5'd12, 5'd0, 16'd26 };
+hd[17] <= { 6'd18, 5'd1, 16'd11, 5'd0 };
+hd[18] <= { 6'd16, 5'd2, 16'd9, 5'd0 };
+hd[19] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[20] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[21] <= { 6'd20, 5'd2, 5'd1, 16'd0 };
+hd[22] <= { 6'd16, 5'd1, 16'd7, 5'd0 };
+hd[23] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[24] <= { 6'd0, 5'd13, 5'd1, 5'd2, 11'd0 };
+hd[25] <= { 6'd17, 5'd13, 16'd7, 5'd0 };
+hd[26] <= { 6'd16, 5'd1, 16'd7, 5'd0 };
+hd[27] <= { 6'd16, 5'd2, 16'd3, 5'd0 };
+hd[28] <= { 6'd9, 5'd14, 5'd1, 5'd2, 11'd0 };
+hd[29] <= { 6'd22, 5'd14, 5'd0, 16'd33 };
+hd[30] <= { 6'd16, 5'd1, 16'd0, 5'd0 };
+hd[31] <= { 6'd16, 5'd2, 16'd1, 5'd0 };
+hd[32] <= { 6'd34, 5'd1, 5'd2, 16'd0 };
+hd[33] <= { 6'd18, 5'd1, 16'd44, 5'd0 };
+hd[34] <= { 6'd16, 5'd2, 16'd55, 5'd0 };
+hd[35] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[36] <= { 6'd19, 5'd15, 5'd1, 16'd0 };
+hd[37] <= { 6'd17, 5'd15, 16'd62, 5'd0 };
+hd[38] <= { 6'd16, 5'd1, 16'd62, 5'd0 };
+hd[39] <= { 6'd31, 5'd1, 21'd0 };
+hd[40] <= { 6'd16, 5'd1, 16'd55, 5'd0 };
+hd[41] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[42] <= { 6'd0, 5'd16, 5'd1, 5'd2, 11'd0 };
+hd[43] <= { 6'd17, 5'd16, 16'd55, 5'd0 };
+hd[44] <= { 6'd16, 5'd1, 16'd55, 5'd0 };
+hd[45] <= { 6'd16, 5'd2, 16'd3, 5'd0 };
+hd[46] <= { 6'd10, 5'd17, 5'd1, 5'd2, 11'd0 };
+hd[47] <= { 6'd22, 5'd17, 5'd0, 16'd55 };
+hd[48] <= { 6'd16, 5'd1, 16'd55, 5'd0 };
+hd[49] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[50] <= { 6'd1, 5'd18, 5'd1, 5'd2, 11'd0 };
+hd[51] <= { 6'd17, 5'd18, 16'd61, 5'd0 };
+hd[52] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[53] <= { 6'd17, 5'd1, 16'd55, 5'd0 };
+hd[54] <= { 6'd26, 16'd59, 10'd0 };
+hd[55] <= { 6'd16, 5'd1, 16'd55, 5'd0 };
+hd[56] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[57] <= { 6'd1, 5'd19, 5'd1, 5'd2, 11'd0 };
+hd[58] <= { 6'd17, 5'd19, 16'd61, 5'd0 };
+hd[59] <= { 6'd18, 5'd1, 16'd44, 5'd0 };
+hd[60] <= { 6'd16, 5'd2, 16'd55, 5'd0 };
+hd[61] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[62] <= { 6'd19, 5'd20, 5'd1, 16'd0 };
+hd[63] <= { 6'd17, 5'd20, 16'd9, 5'd0 };
+hd[64] <= { 6'd18, 5'd1, 16'd44, 5'd0 };
+hd[65] <= { 6'd16, 5'd2, 16'd61, 5'd0 };
+hd[66] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[67] <= { 6'd19, 5'd21, 5'd1, 16'd0 };
+hd[68] <= { 6'd17, 5'd21, 16'd10, 5'd0 };
+hd[69] <= { 6'd16, 5'd1, 16'd9, 5'd0 };
+hd[70] <= { 6'd16, 5'd2, 16'd6, 5'd0 };
+hd[71] <= { 6'd18, 5'd3, 16'd59, 5'd0 };
+hd[72] <= { 6'd33, 5'd1, 5'd2, 5'd3, 11'd0 };
+hd[73] <= { 6'd16, 5'd1, 16'd10, 5'd0 };
+hd[74] <= { 6'd16, 5'd2, 16'd6, 5'd0 };
+hd[75] <= { 6'd18, 5'd3, 16'd60, 5'd0 };
+hd[76] <= { 6'd33, 5'd1, 5'd2, 5'd3, 11'd0 };
+hd[77] <= { 6'd18, 5'd1, 16'd11, 5'd0 };
+hd[78] <= { 6'd16, 5'd2, 16'd9, 5'd0 };
+hd[79] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[80] <= { 6'd19, 5'd22, 5'd1, 16'd0 };
+hd[81] <= { 6'd18, 5'd1, 16'd1, 5'd0 };
+hd[82] <= { 6'd10, 5'd23, 5'd22, 5'd1, 11'd0 };
+hd[83] <= { 6'd22, 5'd23, 5'd0, 16'd116 };
+hd[84] <= { 6'd18, 5'd1, 16'd11, 5'd0 };
+hd[85] <= { 6'd16, 5'd2, 16'd10, 5'd0 };
+hd[86] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[87] <= { 6'd19, 5'd24, 5'd1, 16'd0 };
+hd[88] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[89] <= { 6'd10, 5'd25, 5'd24, 5'd1, 11'd0 };
+hd[90] <= { 6'd22, 5'd25, 5'd0, 16'd113 };
+hd[91] <= { 6'd18, 5'd1, 16'd1, 5'd0 };
+hd[92] <= { 6'd17, 5'd1, 16'd58, 5'd0 };
+hd[93] <= { 6'd16, 5'd1, 16'd60, 5'd0 };
+hd[94] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[95] <= { 6'd0, 5'd26, 5'd1, 5'd2, 11'd0 };
+hd[96] <= { 6'd17, 5'd26, 16'd63, 5'd0 };
+hd[97] <= { 6'd16, 5'd1, 16'd58, 5'd0 };
+hd[98] <= { 6'd18, 5'd2, 16'd32, 5'd0 };
+hd[99] <= { 6'd6, 5'd27, 5'd1, 5'd2, 11'd0 };
+hd[100] <= { 6'd22, 5'd27, 5'd0, 16'd113 };
+hd[101] <= { 6'd16, 5'd5, 16'd58, 5'd0 };
+hd[102] <= { 6'd16, 5'd6, 16'd63, 5'd0 };
+hd[103] <= { 6'd38, 5'd5, 5'd6, 16'd0 };
+hd[104] <= { 6'd16, 5'd1, 16'd63, 5'd0 };
+hd[105] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[106] <= { 6'd0, 5'd28, 5'd1, 5'd2, 11'd0 };
+hd[107] <= { 6'd17, 5'd28, 16'd63, 5'd0 };
+hd[108] <= { 6'd16, 5'd1, 16'd58, 5'd0 };
+hd[109] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[110] <= { 6'd0, 5'd29, 5'd1, 5'd2, 11'd0 };
+hd[111] <= { 6'd17, 5'd29, 16'd58, 5'd0 };
+hd[112] <= { 6'd26, 16'd97, 10'd0 };
+hd[113] <= { 6'd16, 5'd1, 16'd0, 5'd0 };
+hd[114] <= { 6'd16, 5'd2, 16'd2, 5'd0 };
+hd[115] <= { 6'd34, 5'd1, 5'd2, 16'd0 };
+hd[116] <= { 6'd16, 5'd1, 16'd9, 5'd0 };
+hd[117] <= { 6'd31, 5'd1, 21'd0 };
+hd[118] <= { 6'd18, 5'd1, 16'd11, 5'd0 };
+hd[119] <= { 6'd16, 5'd2, 16'd10, 5'd0 };
+hd[120] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[121] <= { 6'd19, 5'd10, 5'd1, 16'd0 };
+hd[122] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[123] <= { 6'd10, 5'd11, 5'd10, 5'd1, 11'd0 };
+hd[124] <= { 6'd22, 5'd11, 5'd0, 16'd147 };
+hd[125] <= { 6'd18, 5'd1, 16'd1, 5'd0 };
+hd[126] <= { 6'd17, 5'd1, 16'd58, 5'd0 };
+hd[127] <= { 6'd16, 5'd1, 16'd60, 5'd0 };
+hd[128] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[129] <= { 6'd0, 5'd12, 5'd1, 5'd2, 11'd0 };
+hd[130] <= { 6'd17, 5'd12, 16'd63, 5'd0 };
+hd[131] <= { 6'd16, 5'd1, 16'd58, 5'd0 };
+hd[132] <= { 6'd18, 5'd2, 16'd32, 5'd0 };
+hd[133] <= { 6'd6, 5'd13, 5'd1, 5'd2, 11'd0 };
+hd[134] <= { 6'd22, 5'd13, 5'd0, 16'd147 };
+hd[135] <= { 6'd16, 5'd5, 16'd58, 5'd0 };
+hd[136] <= { 6'd16, 5'd6, 16'd63, 5'd0 };
+hd[137] <= { 6'd38, 5'd5, 5'd6, 16'd0 };
+hd[138] <= { 6'd16, 5'd1, 16'd63, 5'd0 };
+hd[139] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[140] <= { 6'd0, 5'd14, 5'd1, 5'd2, 11'd0 };
+hd[141] <= { 6'd17, 5'd14, 16'd63, 5'd0 };
+hd[142] <= { 6'd16, 5'd1, 16'd58, 5'd0 };
+hd[143] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[144] <= { 6'd0, 5'd15, 5'd1, 5'd2, 11'd0 };
+hd[145] <= { 6'd17, 5'd15, 16'd58, 5'd0 };
+hd[146] <= { 6'd26, 16'd131, 10'd0 };
+hd[147] <= { 6'd18, 5'd1, 16'd33, 5'd0 };
+hd[148] <= { 6'd16, 5'd2, 16'd9, 5'd0 };
+hd[149] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[150] <= { 6'd19, 5'd16, 5'd1, 16'd0 };
+hd[151] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[152] <= { 6'd11, 5'd17, 5'd16, 5'd1, 11'd0 };
+hd[153] <= { 6'd22, 5'd17, 5'd0, 16'd176 };
+hd[154] <= { 6'd18, 5'd1, 16'd1, 5'd0 };
+hd[155] <= { 6'd17, 5'd1, 16'd58, 5'd0 };
+hd[156] <= { 6'd16, 5'd1, 16'd59, 5'd0 };
+hd[157] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[158] <= { 6'd0, 5'd18, 5'd1, 5'd2, 11'd0 };
+hd[159] <= { 6'd17, 5'd18, 16'd64, 5'd0 };
+hd[160] <= { 6'd16, 5'd1, 16'd58, 5'd0 };
+hd[161] <= { 6'd18, 5'd2, 16'd32, 5'd0 };
+hd[162] <= { 6'd6, 5'd19, 5'd1, 5'd2, 11'd0 };
+hd[163] <= { 6'd22, 5'd19, 5'd0, 16'd176 };
+hd[164] <= { 6'd16, 5'd5, 16'd58, 5'd0 };
+hd[165] <= { 6'd16, 5'd6, 16'd64, 5'd0 };
+hd[166] <= { 6'd37, 5'd5, 5'd6, 16'd0 };
+hd[167] <= { 6'd16, 5'd1, 16'd64, 5'd0 };
+hd[168] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[169] <= { 6'd0, 5'd20, 5'd1, 5'd2, 11'd0 };
+hd[170] <= { 6'd17, 5'd20, 16'd64, 5'd0 };
+hd[171] <= { 6'd16, 5'd1, 16'd58, 5'd0 };
+hd[172] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[173] <= { 6'd0, 5'd21, 5'd1, 5'd2, 11'd0 };
+hd[174] <= { 6'd17, 5'd21, 16'd58, 5'd0 };
+hd[175] <= { 6'd26, 16'd160, 10'd0 };
+hd[176] <= { 6'd18, 5'd1, 16'd33, 5'd0 };
+hd[177] <= { 6'd16, 5'd2, 16'd9, 5'd0 };
+hd[178] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[179] <= { 6'd19, 5'd22, 5'd1, 16'd0 };
+hd[180] <= { 6'd17, 5'd22, 16'd8, 5'd0 };
+hd[181] <= { 6'd16, 5'd1, 16'd9, 5'd0 };
+hd[182] <= { 6'd16, 5'd2, 16'd8, 5'd0 };
+hd[183] <= { 6'd34, 5'd1, 5'd2, 16'd0 };
+hd[184] <= { 6'd16, 5'd31, 16'd57, 5'd0 };
+hd[185] <= { 6'd27, 5'd31, 21'd0 };
+hd[186] <= { 6'd18, 5'd1, 16'd186, 5'd0 };
+hd[187] <= { 6'd17, 5'd1, 16'd1, 5'd0 };
+hd[188] <= { 6'd18, 5'd1, 16'd33, 5'd0 };
+hd[189] <= { 6'd17, 5'd1, 16'd2, 5'd0 };
+hd[190] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[191] <= { 6'd17, 5'd1, 16'd4, 5'd0 };
+hd[192] <= { 6'd18, 5'd1, 16'd1, 5'd0 };
+hd[193] <= { 6'd17, 5'd1, 16'd5, 5'd0 };
+hd[194] <= { 6'd18, 5'd1, 16'd2, 5'd0 };
+hd[195] <= { 6'd17, 5'd1, 16'd6, 5'd0 };
+hd[196] <= { 6'd30, 5'd23, 21'd0 };
+hd[197] <= { 6'd17, 5'd23, 16'd3, 5'd0 };
+hd[198] <= { 6'd16, 5'd1, 16'd3, 5'd0 };
+hd[199] <= { 6'd31, 5'd1, 21'd0 };
+hd[200] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[201] <= { 6'd17, 5'd1, 16'd67, 5'd0 };
+hd[202] <= { 6'd16, 5'd1, 16'd67, 5'd0 };
+hd[203] <= { 6'd16, 5'd2, 16'd3, 5'd0 };
+hd[204] <= { 6'd6, 5'd24, 5'd1, 5'd2, 11'd0 };
+hd[205] <= { 6'd22, 5'd24, 5'd0, 16'd250 };
+hd[206] <= { 6'd30, 5'd25, 21'd0 };
+hd[207] <= { 6'd17, 5'd25, 16'd73, 5'd0 };
+hd[208] <= { 6'd16, 5'd1, 16'd73, 5'd0 };
+hd[209] <= { 6'd31, 5'd1, 21'd0 };
+hd[210] <= { 6'd16, 5'd1, 16'd73, 5'd0 };
+hd[211] <= { 6'd18, 5'd2, 16'd10, 5'd0 };
+hd[212] <= { 6'd8, 5'd26, 5'd1, 5'd2, 11'd0 };
+hd[213] <= { 6'd22, 5'd26, 5'd0, 16'd219 };
+hd[214] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[215] <= { 6'd17, 5'd1, 16'd56, 5'd0 };
+hd[216] <= { 6'd16, 5'd1, 16'd56, 5'd0 };
+hd[217] <= { 6'd31, 5'd1, 21'd0 };
+hd[218] <= { 6'd26, 16'd249, 10'd0 };
+hd[219] <= { 6'd18, 5'd1, 16'd44, 5'd0 };
+hd[220] <= { 6'd16, 5'd2, 16'd67, 5'd0 };
+hd[221] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[222] <= { 6'd16, 5'd2, 16'd73, 5'd0 };
+hd[223] <= { 6'd20, 5'd2, 5'd1, 16'd0 };
+hd[224] <= { 6'd18, 5'd1, 16'd11, 5'd0 };
+hd[225] <= { 6'd16, 5'd2, 16'd73, 5'd0 };
+hd[226] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[227] <= { 6'd18, 5'd2, 16'd0, 5'd0 };
+hd[228] <= { 6'd20, 5'd2, 5'd1, 16'd0 };
+hd[229] <= { 6'd18, 5'd1, 16'd33, 5'd0 };
+hd[230] <= { 6'd16, 5'd2, 16'd73, 5'd0 };
+hd[231] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[232] <= { 6'd18, 5'd2, 16'd0, 5'd0 };
+hd[233] <= { 6'd20, 5'd2, 5'd1, 16'd0 };
+hd[234] <= { 6'd16, 5'd1, 16'd73, 5'd0 };
+hd[235] <= { 6'd16, 5'd2, 16'd4, 5'd0 };
+hd[236] <= { 6'd18, 5'd3, 16'd72, 5'd0 };
+hd[237] <= { 6'd33, 5'd1, 5'd2, 5'd3, 11'd0 };
+hd[238] <= { 6'd16, 5'd1, 16'd72, 5'd0 };
+hd[239] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[240] <= { 6'd1, 5'd27, 5'd1, 5'd2, 11'd0 };
+hd[241] <= { 6'd18, 5'd1, 16'd22, 5'd0 };
+hd[242] <= { 6'd16, 5'd2, 16'd73, 5'd0 };
+hd[243] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[244] <= { 6'd20, 5'd27, 5'd1, 16'd0 };
+hd[245] <= { 6'd16, 5'd1, 16'd67, 5'd0 };
+hd[246] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[247] <= { 6'd0, 5'd28, 5'd1, 5'd2, 11'd0 };
+hd[248] <= { 6'd17, 5'd28, 16'd67, 5'd0 };
+hd[249] <= { 6'd26, 16'd202, 10'd0 };
+hd[250] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[251] <= { 6'd17, 5'd1, 16'd67, 5'd0 };
+hd[252] <= { 6'd16, 5'd1, 16'd67, 5'd0 };
+hd[253] <= { 6'd16, 5'd2, 16'd3, 5'd0 };
+hd[254] <= { 6'd6, 5'd29, 5'd1, 5'd2, 11'd0 };
+hd[255] <= { 6'd22, 5'd29, 5'd0, 16'd297 };
+hd[256] <= { 6'd18, 5'd1, 16'd44, 5'd0 };
+hd[257] <= { 6'd16, 5'd2, 16'd67, 5'd0 };
+hd[258] <= { 6'd0, 5'd1, 5'd2, 5'd1, 11'd0 };
+hd[259] <= { 6'd19, 5'd10, 5'd1, 16'd0 };
+hd[260] <= { 6'd17, 5'd10, 16'd73, 5'd0 };
+hd[261] <= { 6'd16, 5'd1, 16'd73, 5'd0 };
+hd[262] <= { 6'd16, 5'd2, 16'd5, 5'd0 };
+hd[263] <= { 6'd18, 5'd3, 16'd70, 5'd0 };
+hd[264] <= { 6'd33, 5'd1, 5'd2, 5'd3, 11'd0 };
+hd[265] <= { 6'd16, 5'd1, 16'd73, 5'd0 };
+hd[266] <= { 6'd16, 5'd2, 16'd6, 5'd0 };
+hd[267] <= { 6'd18, 5'd3, 16'd71, 5'd0 };
+hd[268] <= { 6'd33, 5'd1, 5'd2, 5'd3, 11'd0 };
+hd[269] <= { 6'd16, 5'd1, 16'd70, 5'd0 };
+hd[270] <= { 6'd17, 5'd1, 16'd68, 5'd0 };
+hd[271] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[272] <= { 6'd17, 5'd1, 16'd69, 5'd0 };
+hd[273] <= { 6'd16, 5'd1, 16'd68, 5'd0 };
+hd[274] <= { 6'd16, 5'd2, 16'd71, 5'd0 };
+hd[275] <= { 6'd7, 5'd11, 5'd1, 5'd2, 11'd0 };
+hd[276] <= { 6'd22, 5'd11, 5'd0, 16'd290 };
+hd[277] <= { 6'd16, 5'd1, 16'd73, 5'd0 };
+hd[278] <= { 6'd16, 5'd2, 16'd68, 5'd0 };
+hd[279] <= { 6'd16, 5'd3, 16'd69, 5'd0 };
+hd[280] <= { 6'd32, 5'd1, 5'd2, 5'd3, 11'd0 };
+hd[281] <= { 6'd16, 5'd1, 16'd68, 5'd0 };
+hd[282] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[283] <= { 6'd0, 5'd12, 5'd1, 5'd2, 11'd0 };
+hd[284] <= { 6'd17, 5'd12, 16'd68, 5'd0 };
+hd[285] <= { 6'd16, 5'd1, 16'd69, 5'd0 };
+hd[286] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[287] <= { 6'd0, 5'd13, 5'd1, 5'd2, 11'd0 };
+hd[288] <= { 6'd17, 5'd13, 16'd69, 5'd0 };
+hd[289] <= { 6'd26, 16'd273, 10'd0 };
+hd[290] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[291] <= { 6'd17, 5'd1, 16'd69, 5'd0 };
+hd[292] <= { 6'd16, 5'd1, 16'd67, 5'd0 };
+hd[293] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[294] <= { 6'd0, 5'd14, 5'd1, 5'd2, 11'd0 };
+hd[295] <= { 6'd17, 5'd14, 16'd67, 5'd0 };
+hd[296] <= { 6'd26, 16'd252, 10'd0 };
+hd[297] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[298] <= { 6'd17, 5'd1, 16'd7, 5'd0 };
+hd[299] <= { 6'd18, 5'd1, 16'd44, 5'd0 };
+hd[300] <= { 6'd2, 5'd1, 5'd1, 16'd0 };
+hd[301] <= { 6'd19, 5'd15, 5'd1, 16'd0 };
+hd[302] <= { 6'd17, 5'd15, 16'd9, 5'd0 };
+hd[303] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[304] <= { 6'd17, 5'd1, 16'd8, 5'd0 };
+hd[305] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[306] <= { 6'd17, 5'd1, 16'd55, 5'd0 };
+hd[307] <= { 6'd16, 5'd1, 16'd9, 5'd0 };
+hd[308] <= { 6'd16, 5'd2, 16'd8, 5'd0 };
+hd[309] <= { 6'd34, 5'd1, 5'd2, 16'd0 };
+hd[310] <= { 6'd29, 26'd0 };
+

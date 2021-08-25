@@ -1,0 +1,142 @@
+Compilacao de Cminus: testeRede.cminus
+
+Construindo Tabela de Simbolos...
+
+Tabela de Simbolos:
+
+Variable Name  MemLoc  Scope     TypeID   Type   Line numbers
+-------------  ------  -----     ------   -----  -----------
+receive        0                 func     int     0 
+reghd          0                 func     void    0 
+main           0                 func     void   29 
+dadoASerEnviado1 1       main      var      int     2  2 13 14 
+dadoASerEnviado2 3       main      var      int     4  4 18 19 
+salvaPC        0                 func     void    0 
+dadoRecebido1  2       main      var      int     3  3 15 16 23 
+dadoRecebido2  4       main      var      int     5  5 20 21 23 
+interrupt      0                 func     void    0 
+i              6       main      var      int     8  8 10 12 26 26 
+send           0                 func     void    0 
+hdreg          0                 func     void    0 
+soma           5       main      var      int     6  6 23 24 
+jumpProcesso   0                 func     void    0 
+hdmd           0                 func     void    0 
+hdmi           0                 func     void    0 
+
+Checando Tipos...
+
+Checagem de Tipos Finalizada
+
+
+Geracao do Codigo Intermediario:
+
+ 0 -> ( call, main , _ , _ ) 
+ 1 -> ( lab, main , _ , _ ) 
+ 2 -> ( asg, 0 , _ , i )
+ 3 -> ( lab, L1 , _ , _ ) 
+ 4 -> ( menor, i , 3 , t10 ) 
+ 5 -> ( if, t10 , L2 , _ ) 
+ 6 -> ( call, input , 0 , t11 ) 
+ 7 -> ( asg, t11 , _ , dadoASerEnviado1 )
+ 8 -> ( par, dadoASerEnviado1 , _ , _ ) 
+ 9 -> ( call, send , 1 , _ ) 
+10 -> ( call, receive , 0 , t12 ) 
+11 -> ( asg, t12 , _ , dadoRecebido1 )
+12 -> ( par, dadoRecebido1 , _ , _ ) 
+13 -> ( call, output , 1 , _ ) 
+14 -> ( call, input , 0 , t13 ) 
+15 -> ( asg, t13 , _ , dadoASerEnviado2 )
+16 -> ( par, dadoASerEnviado2 , _ , _ ) 
+17 -> ( call, send , 1 , _ ) 
+18 -> ( call, receive , 0 , t14 ) 
+19 -> ( asg, t14 , _ , dadoRecebido2 )
+20 -> ( par, dadoRecebido2 , _ , _ ) 
+21 -> ( call, output , 1 , _ ) 
+22 -> ( soma, dadoRecebido1 , dadoRecebido2 , t15 ) 
+23 -> ( asg, t15 , _ , soma )
+24 -> ( par, soma , _ , _ ) 
+25 -> ( call, output , 1 , _ ) 
+26 -> ( soma, i , 1 , t16 ) 
+27 -> ( asg, t16 , _ , i )
+28 -> ( goto, L1 , _ , _ ) 
+29 -> ( lab, L2 , _ , _ ) 
+30 -> ( halt, _ , _ , _ ) 
+
+
+Geracao do Codigo Assembly:
+
+  0 ->  j  1 
+  1 ->  loadi  $S0  0 
+  2 ->  store  $S0  6 
+  3 ->  load  $S0  6 
+  4 ->  loadi  $S1  3 
+  5 ->  slt  t10  $S0  $S1 
+  6 ->  beq  t10  $zero  34 
+  7 ->  in  t11 
+  8 ->  store  t11  1 
+  9 ->  load  $S0  1    
+ 10 ->  send  $S0       
+ 11 ->  rcv  t12       
+ 12 ->  store  t12  2 
+ 13 ->  load  $S0  2 
+ 14 ->  out  $S0 
+ 15 ->  in  t13 
+ 16 ->  store  t13  3 
+ 17 ->  load  $S0  3    
+ 18 ->  send  $S0       
+ 19 ->  rcv  t14       
+ 20 ->  store  t14  4 
+ 21 ->  load  $S0  4 
+ 22 ->  out  $S0 
+ 23 ->  load  $S0  2 
+ 24 ->  load  $S1  4 
+ 25 ->  add  t15  $S0  $S1 
+ 26 ->  store  t15  5 
+ 27 ->  load  $S0  5 
+ 28 ->  out  $S0 
+ 29 ->  load  $S0  6 
+ 30 ->  loadi  $S1  1 
+ 31 ->  add  t16  $S0  $S1 
+ 32 ->  store  t16  6 
+ 33 ->  j  3 
+ 34 ->  hlt 
+
+
+Geracao do Codigo de Maquina:
+
+hd[2800] <= { 6'd26, 16'd1, 10'd0 };
+hd[2801] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[2802] <= { 6'd17, 5'd1, 16'd6, 5'd0 };
+hd[2803] <= { 6'd16, 5'd1, 16'd6, 5'd0 };
+hd[2804] <= { 6'd18, 5'd2, 16'd3, 5'd0 };
+hd[2805] <= { 6'd6, 5'd10, 5'd1, 5'd2, 11'd0 };
+hd[2806] <= { 6'd22, 5'd10, 5'd0, 16'd34 };
+hd[2807] <= { 6'd30, 5'd11, 21'd0 };
+hd[2808] <= { 6'd17, 5'd11, 16'd1, 5'd0 };
+hd[2809] <= { 6'd16, 5'd1, 16'd1, 5'd0 };
+hd[2810] <= { 6'd41, 5'd1, 21'd0 };
+hd[2811] <= { 6'd40, 5'd12, 21'd0 };
+hd[2812] <= { 6'd17, 5'd12, 16'd2, 5'd0 };
+hd[2813] <= { 6'd16, 5'd1, 16'd2, 5'd0 };
+hd[2814] <= { 6'd31, 5'd1, 21'd0 };
+hd[2815] <= { 6'd30, 5'd13, 21'd0 };
+hd[2816] <= { 6'd17, 5'd13, 16'd3, 5'd0 };
+hd[2817] <= { 6'd16, 5'd1, 16'd3, 5'd0 };
+hd[2818] <= { 6'd41, 5'd1, 21'd0 };
+hd[2819] <= { 6'd40, 5'd14, 21'd0 };
+hd[2820] <= { 6'd17, 5'd14, 16'd4, 5'd0 };
+hd[2821] <= { 6'd16, 5'd1, 16'd4, 5'd0 };
+hd[2822] <= { 6'd31, 5'd1, 21'd0 };
+hd[2823] <= { 6'd16, 5'd1, 16'd2, 5'd0 };
+hd[2824] <= { 6'd16, 5'd2, 16'd4, 5'd0 };
+hd[2825] <= { 6'd0, 5'd15, 5'd1, 5'd2, 11'd0 };
+hd[2826] <= { 6'd17, 5'd15, 16'd5, 5'd0 };
+hd[2827] <= { 6'd16, 5'd1, 16'd5, 5'd0 };
+hd[2828] <= { 6'd31, 5'd1, 21'd0 };
+hd[2829] <= { 6'd16, 5'd1, 16'd6, 5'd0 };
+hd[2830] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[2831] <= { 6'd0, 5'd16, 5'd1, 5'd2, 11'd0 };
+hd[2832] <= { 6'd17, 5'd16, 16'd6, 5'd0 };
+hd[2833] <= { 6'd26, 16'd3, 10'd0 };
+hd[2834] <= { 6'd29, 26'd0 };
+

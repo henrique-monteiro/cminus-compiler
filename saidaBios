@@ -1,0 +1,187 @@
+Compilacao de Cminus: bios.cminus
+
+Construindo Tabela de Simbolos...
+
+Tabela de Simbolos:
+
+Variable Name  MemLoc  Scope     TypeID   Type   Line numbers
+-------------  ------  -----     ------   -----  -----------
+receive        0                 func     int     0 
+testeCPU       7       main      var      int     9  9 18 20 20 32 37 
+dimensaoSO     1       main      var      int     3  3 16 25 
+reghd          0                 func     void    0 
+main           0                 func     void   40 
+tamPrograma    5       main      var      int     7  7 15 23 
+salvaPC        0                 func     void    0 
+interrupt      0                 func     void    0 
+j              3       main      var      int     5  5 13 25 26 26 
+k              4       main      var      int     6  6 14 25 27 27 
+n              2       main      var      int     4  4 12 23 28 28 
+send           0                 func     void    0 
+hdreg          0                 func     void    0 
+jumpProcesso   0                 func     void    0 
+testeInOut     6       main      var      int     8  8 19 20 31 
+hdmd           0                 func     void    0 
+hdmi           0                 func     void    0 
+
+Checando Tipos...
+
+Checagem de Tipos Finalizada
+
+
+Geracao do Codigo Intermediario:
+
+ 0 -> ( call, main , _ , _ ) 
+ 1 -> ( lab, main , _ , _ ) 
+ 2 -> ( asg, 0 , _ , n )
+ 3 -> ( asg, 100 , _ , j )
+ 4 -> ( asg, 0 , _ , k )
+ 5 -> ( asg, 336 , _ , tamPrograma )
+ 6 -> ( asg, 0 , _ , dimensaoSO )
+ 7 -> ( asg, 5 , _ , testeCPU )
+ 8 -> ( call, input , 0 , t10 ) 
+ 9 -> ( asg, t10 , _ , testeInOut )
+10 -> ( soma, testeCPU , testeInOut , t11 ) 
+11 -> ( asg, t11 , _ , testeCPU )
+12 -> ( lab, L1 , _ , _ ) 
+13 -> ( menor, n , tamPrograma , t12 ) 
+14 -> ( if, t12 , L2 , _ ) 
+15 -> ( par, dimensaoSO , _ , _ ) 
+16 -> ( par, j , _ , _ ) 
+17 -> ( par, k , _ , _ ) 
+18 -> ( call, hdmi , 3 , _ ) 
+19 -> ( soma, j , 1 , t13 ) 
+20 -> ( asg, t13 , _ , j )
+21 -> ( soma, k , 1 , t14 ) 
+22 -> ( asg, t14 , _ , k )
+23 -> ( soma, n , 1 , t15 ) 
+24 -> ( asg, t15 , _ , n )
+25 -> ( goto, L1 , _ , _ ) 
+26 -> ( lab, L2 , _ , _ ) 
+27 -> ( par, testeInOut , _ , _ ) 
+28 -> ( call, output , 1 , _ ) 
+29 -> ( dif, testeCPU , 15 , t16 ) 
+30 -> ( if, t16 , L3 , _ ) 
+31 -> ( par, 0 , _ , _ ) 
+32 -> ( call, output , 1 , _ ) 
+33 -> ( call, interrupt , 0 , _ ) 
+34 -> ( goto, L4 , _ , _ ) 
+35 -> ( lab, L3 , _ , _ ) 
+36 -> ( par, testeCPU , _ , _ ) 
+37 -> ( call, output , 1 , _ ) 
+38 -> ( lab, L4 , _ , _ ) 
+39 -> ( halt, _ , _ , _ ) 
+
+
+Geracao do Codigo Assembly:
+
+  0 ->  j  1 
+  1 ->  loadi  $S0  0 
+  2 ->  store  $S0  2 
+  3 ->  loadi  $S0  100 
+  4 ->  store  $S0  3 
+  5 ->  loadi  $S0  0 
+  6 ->  store  $S0  4 
+  7 ->  loadi  $S0  336 
+  8 ->  store  $S0  5 
+  9 ->  loadi  $S0  0 
+ 10 ->  store  $S0  1 
+ 11 ->  loadi  $S0  5 
+ 12 ->  store  $S0  7 
+ 13 ->  in  t10 
+ 14 ->  store  t10  6 
+ 15 ->  load  $S0  7 
+ 16 ->  load  $S1  6 
+ 17 ->  add  t11  $S0  $S1 
+ 18 ->  store  t11  7 
+ 19 ->  load  $S0  2 
+ 20 ->  load  $S1  5 
+ 21 ->  slt  t12  $S0  $S1 
+ 22 ->  beq  t12  $zero  40 
+ 23 ->  load  $S0  1    
+ 24 ->  load  $S1  3    
+ 25 ->  load  $S2  4    
+ 26 ->  hdmi  $S0  $S1  $S2 
+ 27 ->  load  $S0  3 
+ 28 ->  loadi  $S1  1 
+ 29 ->  add  t13  $S0  $S1 
+ 30 ->  store  t13  3 
+ 31 ->  load  $S0  4 
+ 32 ->  loadi  $S1  1 
+ 33 ->  add  t14  $S0  $S1 
+ 34 ->  store  t14  4 
+ 35 ->  load  $S0  2 
+ 36 ->  loadi  $S1  1 
+ 37 ->  add  t15  $S0  $S1 
+ 38 ->  store  t15  2 
+ 39 ->  j  19 
+ 40 ->  load  $S0  6 
+ 41 ->  out  $S0 
+ 42 ->  load  $S0  7 
+ 43 ->  loadi  $S1  15 
+ 44 ->  sdt  t16  $S0  $S1 
+ 45 ->  beq  t16  $zero  50 
+ 46 ->  loadi  $S0  0 
+ 47 ->  out  $S0 
+ 48 ->  interrupt          
+ 49 ->  j  52 
+ 50 ->  load  $S0  7 
+ 51 ->  out  $S0 
+ 52 ->  hlt 
+
+
+Geracao do Codigo de Maquina:
+
+hd[0] <= { 6'd26, 16'd1, 10'd0 };
+hd[1] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[2] <= { 6'd17, 5'd1, 16'd2, 5'd0 };
+hd[3] <= { 6'd18, 5'd1, 16'd100, 5'd0 };
+hd[4] <= { 6'd17, 5'd1, 16'd3, 5'd0 };
+hd[5] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[6] <= { 6'd17, 5'd1, 16'd4, 5'd0 };
+hd[7] <= { 6'd18, 5'd1, 16'd336, 5'd0 };
+hd[8] <= { 6'd17, 5'd1, 16'd5, 5'd0 };
+hd[9] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[10] <= { 6'd17, 5'd1, 16'd1, 5'd0 };
+hd[11] <= { 6'd18, 5'd1, 16'd5, 5'd0 };
+hd[12] <= { 6'd17, 5'd1, 16'd7, 5'd0 };
+hd[13] <= { 6'd30, 5'd10, 21'd0 };
+hd[14] <= { 6'd17, 5'd10, 16'd6, 5'd0 };
+hd[15] <= { 6'd16, 5'd1, 16'd7, 5'd0 };
+hd[16] <= { 6'd16, 5'd2, 16'd6, 5'd0 };
+hd[17] <= { 6'd0, 5'd11, 5'd1, 5'd2, 11'd0 };
+hd[18] <= { 6'd17, 5'd11, 16'd7, 5'd0 };
+hd[19] <= { 6'd16, 5'd1, 16'd2, 5'd0 };
+hd[20] <= { 6'd16, 5'd2, 16'd5, 5'd0 };
+hd[21] <= { 6'd6, 5'd12, 5'd1, 5'd2, 11'd0 };
+hd[22] <= { 6'd22, 5'd12, 5'd0, 16'd40 };
+hd[23] <= { 6'd16, 5'd1, 16'd1, 5'd0 };
+hd[24] <= { 6'd16, 5'd2, 16'd3, 5'd0 };
+hd[25] <= { 6'd16, 5'd3, 16'd4, 5'd0 };
+hd[26] <= { 6'd32, 5'd1, 5'd2, 5'd3, 11'd0 };
+hd[27] <= { 6'd16, 5'd1, 16'd3, 5'd0 };
+hd[28] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[29] <= { 6'd0, 5'd13, 5'd1, 5'd2, 11'd0 };
+hd[30] <= { 6'd17, 5'd13, 16'd3, 5'd0 };
+hd[31] <= { 6'd16, 5'd1, 16'd4, 5'd0 };
+hd[32] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[33] <= { 6'd0, 5'd14, 5'd1, 5'd2, 11'd0 };
+hd[34] <= { 6'd17, 5'd14, 16'd4, 5'd0 };
+hd[35] <= { 6'd16, 5'd1, 16'd2, 5'd0 };
+hd[36] <= { 6'd18, 5'd2, 16'd1, 5'd0 };
+hd[37] <= { 6'd0, 5'd15, 5'd1, 5'd2, 11'd0 };
+hd[38] <= { 6'd17, 5'd15, 16'd2, 5'd0 };
+hd[39] <= { 6'd26, 16'd19, 10'd0 };
+hd[40] <= { 6'd16, 5'd1, 16'd6, 5'd0 };
+hd[41] <= { 6'd31, 5'd1, 21'd0 };
+hd[42] <= { 6'd16, 5'd1, 16'd7, 5'd0 };
+hd[43] <= { 6'd18, 5'd2, 16'd15, 5'd0 };
+hd[44] <= { 6'd11, 5'd16, 5'd1, 5'd2, 11'd0 };
+hd[45] <= { 6'd22, 5'd16, 5'd0, 16'd50 };
+hd[46] <= { 6'd18, 5'd1, 16'd0, 5'd0 };
+hd[47] <= { 6'd31, 5'd1, 21'd0 };
+hd[48] <= { 6'd35, 26'd0 };
+hd[49] <= { 6'd26, 16'd52, 10'd0 };
+hd[50] <= { 6'd16, 5'd1, 16'd7, 5'd0 };
+hd[51] <= { 6'd31, 5'd1, 21'd0 };
+hd[52] <= { 6'd29, 26'd0 };
