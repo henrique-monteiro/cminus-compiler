@@ -1,0 +1,21 @@
+int areaRetangulo(void){
+    int base;
+    int altura;
+    int resultado;
+    base = input();
+    altura = input();
+    resultado = base * altura;
+    return resultado;
+}
+
+int main(void) {
+    int i; 
+    int op; 
+    int resultado;
+
+    resultado = areaRetangulo(); 
+
+    output(resultado);
+
+}
+

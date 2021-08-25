@@ -1,0 +1,22 @@
+int areaTrapezio(void){
+    int baseMaior;
+    int baseMenor;    
+    int altura;
+    int resultado;
+    baseMaior = input();
+    baseMenor = input();
+    altura = input();
+    resultado = ((baseMaior + baseMenor) * altura) / 2;
+    return resultado;
+}
+
+int main(void) {
+    int i; 
+    int op; 
+    int resultado;
+
+    resultado = areaTrapezio();
+    
+    output(areaTrapezio);
+
+}

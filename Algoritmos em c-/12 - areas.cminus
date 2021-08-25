@@ -1,0 +1,48 @@
+int base;
+int altura;
+int resultado;
+
+int areaRetangulo(void){
+    base = input();
+    altura = input();
+
+    resultado = base * altura;
+    return resultado;
+}
+
+int areaTriangulo(void){
+    base = input();
+    altura = input();
+    
+    resultado = (base * altura) / 2;
+    return resultado;
+}
+
+int areaTrapezio(void){
+    int baseMaior;
+    int baseMenor;    
+
+    baseMaior = input();
+    baseMenor = input();
+    altura = input();
+
+    resultado = ((baseMaior + baseMenor) * altura) / 2;
+    return resultado;
+}
+
+int main(void) {
+    int i; 
+    int op; 
+
+    op = input();
+
+    if(op == 1)
+        resultado = areaRetangulo();
+    else if(op == 2)
+        resultado = areaTriangulo();
+    else if(op == 3)
+        resultado = areaTrapezio();
+
+    output(resultado);
+}
+

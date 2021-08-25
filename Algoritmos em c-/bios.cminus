@@ -1,0 +1,40 @@
+void main(void)
+{
+  int dimensaoSO;
+  int n;
+  int j;
+  int k;
+  int tamPrograma;
+  int testeInOut;
+  int testeCPU;
+
+
+  n = 0;
+  j = 100;
+  k = 0;
+  tamPrograma = 336;
+  dimensaoSO = 0;
+
+  testeCPU = 5;
+  testeInOut = input();
+  testeCPU = testeCPU + testeInOut;
+
+
+  while (n < tamPrograma)
+  {
+  	hdmi(dimensaoSO, j, k);
+    j = j + 1;
+    k = k + 1;
+    n = n + 1;
+  }
+
+  output(testeInOut);
+  if(testeCPU != 15){
+    output(0000);
+    interrupt();
+  }
+  else{
+    output(testeCPU);
+  }
+
+}

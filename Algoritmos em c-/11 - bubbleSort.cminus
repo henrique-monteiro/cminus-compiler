@@ -1,0 +1,47 @@
+int vet[10];
+
+void bubbleSort (int vetor[], int n) {
+    int k;
+    int j;
+    int aux;
+
+    k = 1;
+    while(k<n){
+        j = 0;       
+        while(j<n-1){
+            if (vetor[j] > vetor[j + 1]) {
+                aux = vetor[j];
+                vetor[j] = vetor[j + 1];
+                vetor[j+1] = aux;
+            }  
+            j = j + 1;
+        }          
+        k = k + 1;    
+    }
+
+}
+
+void main(void){
+    int i;
+    int tamanho;
+    int resultado;
+
+    i = 0;
+    tamanho = input();
+
+    while(i<tamanho){
+        vet[i] = input();
+        output(vet[i]);
+        i = i + 1;
+    }
+
+    bubbleSort(vet, tamanho);
+
+    i = 0;
+    while(i<tamanho){
+        output(vet[i]);
+        i = i + 1;
+    }
+
+
+}

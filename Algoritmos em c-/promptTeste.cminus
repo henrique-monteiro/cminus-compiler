@@ -1,0 +1,192 @@
+int indiceSO;
+int primeiraInstrucaoPrompt;
+int primeiraInstrucaoTrocaContexto;
+int quantidadePrograma;
+int trilhaTamanho;
+int trilhaPrimeiraInstrucao;
+int trilhaUltimaInstrucao;
+int programasTerminados;
+int PCProcesso;
+int indiceProcesso;
+int indiceUltimoProcesso;
+int vetorTerminado[11];
+int vetorTamanho[11];
+int vetorPC[11];
+int vetorPronto[11];
+int indiceExecucao;
+int auxPrint;
+
+void trocaContexto(void){
+  int i;
+  int ultimaInstrucaoProcesso;
+  int ultimaInstrucaoUltimoProcesso;
+  int indiceUltimaExecucao;
+  int auxProcesso;
+  int trilhaReghd;
+  int trilhaHdreg;
+  int proximoPC;
+
+  salvaPC(proximoPC);
+  vetorPC[indiceProcesso] = proximoPC;
+
+  /*verifica se programa foi finalizado*/
+  if (vetorPC[indiceProcesso] > vetorTamanho[indiceProcesso]){
+    vetorTerminado[indiceProcesso] = 1;
+    programasTerminados = programasTerminados + 1;
+  }
+
+  /*verifica se todos os programas foram executados e terminados*/
+  if (programasTerminados >= quantidadePrograma)
+  {
+    jumpProcesso (indiceSO, primeiraInstrucaoPrompt);
+  }
+
+  /*jumpProcesso (indiceSO, primeiraInstrucaoTrocaContexto);*/
+
+  /*##################################
+    ### inicio troca de contexto #####
+    ##################################*/
+  auxProcesso = vetorPronto[indiceExecucao];
+  output(auxProcesso);
+
+  /*atualizacao do indiceExecucao*/
+  indiceExecucao = indiceExecucao + 1;
+
+  /*verifica se vai precisar ir para o indice 0 do vetor (vetor circular)*/
+  if(indiceExecucao == quantidadePrograma){
+    indiceUltimaExecucao = indiceExecucao-1;
+    indiceExecucao = 0;
+  }
+  else{
+    indiceUltimaExecucao = indiceExecucao-1;
+  }
+
+  /*atualizacao de processos que tomaram e vao tomar a CPU*/
+  indiceProcesso = vetorPronto[indiceExecucao];
+  indiceUltimoProcesso = vetorPronto[indiceUltimaExecucao];
+
+
+  /*#####################################
+    ### inicio fluxo HD <-> Banco Reg ###
+    #####################################*/
+  hdmd (indiceProcesso, trilhaUltimaInstrucao, ultimaInstrucaoProcesso);
+  hdmd (indiceUltimoProcesso, trilhaUltimaInstrucao, ultimaInstrucaoUltimoProcesso);
+
+  if(vetorTerminado[indiceProcesso] == 1)/*quando um processo já esteja finalizado*/
+  {
+    /*salva contexto*/
+    if (vetorTerminado[indiceUltimoProcesso] == 0)/*se nao terminou o ultimo processo*/
+    {
+      i = 1;
+      trilhaReghd = ultimaInstrucaoUltimoProcesso + 1;
+      while (i < 32){
+        reghd (i, trilhaReghd);
+        trilhaReghd = trilhaReghd + 1;
+        i = i + 1;
+      }
+    }
+    jumpProcesso(indiceSO, primeiraInstrucaoTrocaContexto);
+  }
+
+  output(indiceProcesso);
+
+  /*salva contexto*/
+  if (vetorTerminado[indiceUltimoProcesso] == 0)/*se nao terminou o ultimo processo*/
+  {
+    i = 1;
+    trilhaReghd = ultimaInstrucaoUltimoProcesso + 1;
+    while (i < 32){
+      reghd (i, trilhaReghd);
+      trilhaReghd = trilhaReghd + 1;
+      i = i + 1;
+    }
+  }
+
+  /*retoma contexto*/
+  if (vetorPC[indiceProcesso] != 0){/*se ja havia executado mas nao tinha terminado*/
+    i = 1;
+    trilhaHdreg = ultimaInstrucaoProcesso + 1;
+    while (i < 32){
+      hdreg (i, trilhaHdreg);
+      trilhaHdreg = trilhaHdreg + 1;
+      i = i + 1;
+    }
+  }
+  /*##################################
+    ### fim fluxo HD <-> Banco Reg ###
+    ##################################*/
+
+  PCProcesso = vetorPC[indiceProcesso];
+  jumpProcesso (indiceProcesso, PCProcesso);
+}
+
+void main(void)
+{
+  int i;
+  int j;
+  int k;
+  int enderecoPrimeiraInstrucao;
+  int enderecoUltimaInstrucao;
+  int tamanhoPrograma;
+  int indicePrograma;
+
+  primeiraInstrucaoPrompt = 186;
+  primeiraInstrucaoTrocaContexto = 33;
+
+  trilhaTamanho = 0;
+  trilhaPrimeiraInstrucao = 1;
+  trilhaUltimaInstrucao = 2;
+
+  quantidadePrograma = input();
+  output(quantidadePrograma);
+
+  i = 0;
+  while(i < quantidadePrograma){
+    indicePrograma = input();
+    output(indicePrograma);
+
+    if(indicePrograma > 10){/*programa nao existe*/
+      auxPrint = 0000;
+      output(auxPrint);
+    }
+    else{
+      vetorPronto[i] = indicePrograma;
+      vetorTerminado[indicePrograma] = 0;
+      vetorPC[indicePrograma] = 0;
+      hdmd(indicePrograma, trilhaTamanho, tamanhoPrograma);
+      vetorTamanho[indicePrograma] = tamanhoPrograma - 1; /*nao precisa necessariamente executar o halt*/
+      i = i + 1;
+    }
+  }
+
+  i = 0;
+  while (i < quantidadePrograma){
+    indicePrograma = vetorPronto[i];
+
+    /*enderecoLeituraEscritaHD = (3 * setor + trilha) , onde setor = indicePrograma e trilha = 1 ou 2*/
+    /*enderecoLeituraEscritaMemDados = indiceProcesso * 100 + endereco gerado pelo compilador
+      obs: nao precisaria da equação para o endereco da mem dados mas não vai interferir */
+    hdmd (indicePrograma, trilhaPrimeiraInstrucao, enderecoPrimeiraInstrucao);
+    hdmd (indicePrograma, trilhaUltimaInstrucao, enderecoUltimaInstrucao);
+
+    j = enderecoPrimeiraInstrucao;
+    k = 0;
+    while (j <= enderecoUltimaInstrucao){
+
+      /*enderecoLeituraEscritaHD = 3*setor + enderecoPrimeiraInstrucao , onde setor = 0*/
+      /*enderecoEscritaMemInstr = indicePrograma*500 + k*/
+      hdmi(indicePrograma, j, k);
+      j = j + 1;
+      k = k + 1;
+    }
+    k = 0;
+    i = i + 1;
+  }
+
+  programasTerminados = 0;
+  indiceProcesso = vetorPronto[0];
+  PCProcesso = 0;
+  indiceExecucao = 0;
+
+  jumpProcesso (indiceProcesso, PCProcesso);
+}

@@ -1,0 +1,29 @@
+int main(void) {
+    int i;
+    int tamanho;
+    int maior;
+    int menor;
+    int vet[10];
+
+    i = 0;
+    tamanho = input();
+    
+
+    while (i < tamanho){
+		vet[i] = input();
+        output(vet[i]);
+		i = i + 1;
+	}
+    
+    maior = vet[0]; 
+    
+    i = 0;
+    while (i < tamanho){
+        if (vet[i] > maior){
+            maior = vet[i];
+        }
+		i = i + 1;
+	}
+
+    output(maior);
+}

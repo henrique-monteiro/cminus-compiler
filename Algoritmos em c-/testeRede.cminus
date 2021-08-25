@@ -1,0 +1,29 @@
+void main(void){
+  int dadoASerEnviado1;
+  int dadoRecebido1;
+  int dadoASerEnviado2;
+  int dadoRecebido2;
+  int soma;
+
+  int i;
+
+  i = 0;
+
+  while(i<3){
+    dadoASerEnviado1 = input();
+    send(dadoASerEnviado1);
+    dadoRecebido1 = receive();
+    output(dadoRecebido1);
+
+    dadoASerEnviado2 = input();
+    send(dadoASerEnviado2);
+    dadoRecebido2 = receive();
+    output(dadoRecebido2);
+
+    soma = dadoRecebido1 + dadoRecebido2;
+    output(soma);
+
+    i = i + 1;
+
+  }
+}

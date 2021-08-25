@@ -1,0 +1,44 @@
+int vet[10];
+
+int calculoMedia(int v[], int tamanho){
+    int media;
+    int soma;
+    int j;
+    
+
+    media = 0;
+    soma = 0;
+    
+    j = 0;
+    while(j<tamanho){
+        soma = soma + v[j];
+        j = j + 1;
+    }
+
+    media = soma / tamanho;
+
+    return media;
+
+}
+
+void main(void){
+    int i;
+    int tamanho;
+    int resultado;
+
+    i = 0;
+    tamanho = input();
+    
+
+
+    while(i<tamanho){
+        vet[i] = input();
+        output(vet[i]);
+        i = i + 1;
+    }
+
+    resultado = calculoMedia(vet, tamanho);
+
+    output(resultado);
+    
+}

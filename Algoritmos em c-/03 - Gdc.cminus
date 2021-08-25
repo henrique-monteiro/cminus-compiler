@@ -1,0 +1,18 @@
+int gcd (int u, int v)
+{    
+	while(u != v){
+		if(u > v)	u = u -v;
+		else	v = v -u;
+	}
+
+	return u;
+}
+
+void main(void)
+{	int x; int y;
+	x = input(); 
+    output(x);
+    y = input();
+    output(y);
+	output(gcd(x,y));
+}
