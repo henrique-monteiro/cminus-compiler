@@ -270,7 +270,26 @@ void ListAnalyzer(ListaIntermediaria * intermediario)
     {
       nomeFuncao = intermediario->campo2.endereco.string;
 
-      if (!strcmp(nomeFuncao, "interrupt"))
+      if (!strcmp(nomeFuncao, "receive"))
+      {
+        listaCodigoAssembly = insereListaAssembly(listaCodigoAssembly, "rcv",intermediario->campo4.endereco.string, " ", " ");
+        contadorLinhasCodigoObjeto++;
+      }
+
+      else if (!strcmp(nomeFuncao, "send"))
+      {
+        for (i = 0; i < intermediario->campo3.endereco.constant; i++) //não precisa desse for pois eh apenas um parametro
+        {
+          param = primeiroFilaParam(Fila);
+          if(i == 0)
+            listaCodigoAssembly = insereListaAssembly(listaCodigoAssembly, "load", "$S0" ,convertIntString(param->campo1.endereco.variable->memloc) , " ");
+          removeParametro(Fila);
+        }
+        listaCodigoAssembly = insereListaAssembly(listaCodigoAssembly, "send", "$S0", " ", " ");
+        contadorLinhasCodigoObjeto+=2;
+      }
+
+      else if (!strcmp(nomeFuncao, "interrupt"))
       {
         listaCodigoAssembly = insereListaAssembly(listaCodigoAssembly, "interrupt", " ", " ", " ");
         contadorLinhasCodigoObjeto+=1;
@@ -1102,7 +1121,17 @@ void verificaLinhas (ListaIntermediaria * intermediario)
     {
       nomeFuncao = intermediario->campo2.endereco.string;
 
-      if (!strcmp(nomeFuncao, "interrupt"))
+      if (!strcmp(nomeFuncao, "receive"))
+      {
+        contadorLinhasCodigoObjeto+=1;
+      }
+
+      else if (!strcmp(nomeFuncao, "send"))
+      {
+        contadorLinhasCodigoObjeto+=2;
+      }
+
+      else if (!strcmp(nomeFuncao, "interrupt"))
       {
         contadorLinhasCodigoObjeto+=1;
       }

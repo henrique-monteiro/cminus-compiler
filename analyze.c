@@ -67,6 +67,8 @@ static void insertNode( TreeNode * t)
             st_insert("reghd",0,0,0, " ", "func", "void");
             st_insert("hdreg",0,0,0, " ", "func", "void");
             st_insert("interrupt",0,0,0, " ", "func", "void");
+            st_insert("receive",0,0,0, " ", "func", "int");
+            st_insert("send",0,0,0, " ", "func", "void");
             primeiravez = 0;
         }
 

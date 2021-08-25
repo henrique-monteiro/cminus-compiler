@@ -7,7 +7,7 @@
 #include "cgen.h"
 #include "analyze.h"
 
-int posicaoInstrucao = 100;
+int posicaoInstrucao = 2800;
 int formatoInstrucao;
 
 typedef struct listaAssembly
@@ -333,6 +333,16 @@ void geraListaInstrucoes(ListaAssembly * lista)
     {
       formatoInstrucao = 3;
       insereInstrucao(lista, formatoInstrucao, "6'd35");
+    }
+    if (strcmp(lista->opcode,"rcv")==0)
+    {
+      formatoInstrucao = 6;
+      insereInstrucao(lista, formatoInstrucao, "6'd40");
+    }
+    if (strcmp(lista->opcode,"send")==0)
+    {
+      formatoInstrucao = 6;
+      insereInstrucao(lista, formatoInstrucao, "6'd41");
     }
 
     lista = lista->prox;
